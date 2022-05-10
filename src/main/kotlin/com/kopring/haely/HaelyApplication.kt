@@ -14,9 +14,8 @@ fun main() {
 
 // 2. Parenthesis String
 private fun parenthesisStr() {
-    var answer = ""
     val n = readln().toInt()
-    for (i in 1..n) {
+    repeat(n) {
         val ps = readln()
         val psKStack = KStack<Char>()
         var isVPS = true
@@ -32,7 +31,7 @@ private fun parenthesisStr() {
                 }
             }
         }
-        answer = when {
+        var answer = when {
             psKStack.size() == 0 && isVPS -> "YES"
             else -> "NO"
         }
@@ -42,26 +41,25 @@ private fun parenthesisStr() {
 
 // 3. Receipt
 private fun receiptPrint(){
-    val FoodList = listOf<Food>(
+    val foodList = listOf<Food>(
         Food("돼지목살", 6000),
         Food("제로콜라", 2000),
         Food("민트초코오레오", 1500),
         Food("진라면순한맛", 1000)
     )
 
-    FoodList.forEach {
+    foodList.forEach {
         println(it)
     }
     println("----------------")
-    val priceSum = FoodList.sumOf { it.price }
-    println("총합 ${priceSum}")
+    println("총합 ${foodList.sumOf { it.price }}")
 }
 
 // 1. Stack
 private class KStack<T> {
-    val kList = mutableListOf<T>()
-    fun push(elem: T) = kList.add(elem)
-    fun pop(): T = kList.removeLast()
-    fun size(): Int = kList.size
-    fun find(elem: T): Boolean = kList.contains(elem)
+    val list = mutableListOf<T>()
+    fun push(elem: T) = list.add(elem)
+    fun pop(): T = list.removeLast()
+    fun size(): Int = list.size
+    fun find(element: T): Boolean = list.contains(element)
 }
